@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MoveController : MonoBehaviour
 {
@@ -21,5 +22,11 @@ public class MoveController : MonoBehaviour
         Vector3 leftStick = OVRInput.Get(OVRInput.Axis2D.PrimaryThumbstick);
         Vector3 angle = new Vector3(0, leftStick.x * angleSpeed, 0);
         transform.Rotate(angle / 2);
+
+        //画面のリロード
+        if(OVRInput.GetDown(OVRInput.Button.Start))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
     }
 }
